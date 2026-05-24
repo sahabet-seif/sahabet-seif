@@ -3,11 +3,16 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/logo.png" />
-    <link rel="apple-touch-icon" href="/logo.png" />
+    <!-- تم تحديث أيقونة أبل لتستخدم المقاس الجديد المخصص للتطبيقات -->
+    <link rel="apple-touch-icon" href="/icon-192x192.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     
     <title>سحابة صيف | منصة الأدب والاقتباسات</title>
     <meta name="description" content="منصة سحابة صيف للأدب والخواطر والاقتباسات الأدبية والسينمائية الحية." />
+
+    <!-- ربط ملف الـ Manifest وتحديد لون شريط الموبايل -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#121212" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,5 +33,16 @@
   </head>
   <body>
     <div id="root"></div>
+
+    <!-- كود تشغيل محرك التطبيق (Service Worker) -->
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then(reg => console.log('Service Worker is working!'))
+            .catch(err => console.log('Error:', err));
+        });
+      }
+    </script>
   </body>
 </html>
